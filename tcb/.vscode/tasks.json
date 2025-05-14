@@ -194,7 +194,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "VSCODE_CMD": "--verbose isolate --remote-host ${config:torizon_ip} --remote-username ${config:torizon_login} --remote-password '${config:torizon_psswd}' --changes-directory ${config:change-dir}"
+                    "VSCODE_CMD": "--verbose isolate --remote-host ${config:torizon_ip} --remote-username ${config:torizon_login} --remote-password '${config:torizon_psswd}' --changes-directory ${input:change-dir}"
                 }
             },
             "args": [
@@ -261,44 +261,6 @@
             }
         },
         {
-            "label": "tcb-dt-status",
-            "detail": "Run the torizoncore-builder command to show the current device tree of the image, if any.",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "VSCODE_CMD": "--verbose dt status"
-                }
-            },
-            "args": [
-                "source",
-                "./.conf/tcb-env-setup.sh",
-                "-s",
-                "${workspaceFolder}/storage",
-                "-t",
-                "${config:tcb.version}"
-            ],
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "tcb-unpack"
-            ],
-            "icon": {
-                "id": "cloud-upload",
-                "color": "terminal.ansiYellow"
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "group": "cloud-related"
-            }
-        },
-        {
             "label": "tcb-dto-status",
             "detail": "Run the torizoncore-builder command to show the applied device tree overlays that will be deployed.",
             "command": "DOCKER_HOST=",
@@ -324,42 +286,6 @@
             "dependsOn": [
                 "tcb-unpack"
             ],
-            "icon": {
-                "id": "cloud-upload",
-                "color": "terminal.ansiYellow"
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "group": "cloud-related"
-            }
-        },
-        {
-            "label": "tcb-dto-list",
-            "detail": "Run the torizoncore-builder command to scan subdirectory device-trees/overlays of TorizonCore Builder's working directory for overlay source files that are declared to be compatible to the current device tree.",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "VSCODE_CMD": "--verbose dto list"
-                }
-            },
-            "args": [
-                "source",
-                "./.conf/tcb-env-setup.sh",
-                "-s",
-                "${workspaceFolder}/storage",
-                "-t",
-                "${config:tcb.version}"
-            ],
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [],
             "icon": {
                 "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
@@ -443,14 +369,50 @@
             }
         },
         {
-            "label": "tcb-platform-provisioning-data",
-            "detail": "Run the torizoncore-builder command to fetch provisioning data for secure updates.",
+            "label": "tcb-platform-provisioning-data-local",
+            "detail": "Run the torizoncore-builder command to get the data required for offline secure updates.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "VSCODE_CMD": "--verbose platform provisioning-data --credentials credentials.zip"
+                    "VSCODE_CMD": "--verbose platform provisioning-data --credentials credentials.zip --shared-data SHARED_DATA_FILE"
+                }
+            },
+            "args": [
+                "source",
+                "./.conf/tcb-env-setup.sh",
+                "-s",
+                "${workspaceFolder}/storage",
+                "-t",
+                "${config:tcb.version}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [],
+            "icon": {
+                "id": "cloud-upload",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "cloud-related"
+            }
+        },
+        {
+            "label": "tcb-platform-provisioning-data-online",
+            "detail": "Run the torizoncore-builder command to get the data required for online secure updates.",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "VSCODE_CMD": "--verbose platform provisioning-data --credentials credentials.zip --online-data DEFAULT"
                 }
             },
             "args": [
