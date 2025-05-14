@@ -311,7 +311,7 @@
                     "tcb-platform-push-ostree": "Signed and pushed OSTree package tcb successfully",
                     "tcb-dto-status": "Enabled overlays over unknown device tree",
                     "tcb-platform-provisioning-data-local": "successfully generated",
-                    "tcb-platform-provisioning-data-online": "Online provisioning data:",
+                    "tcb-platform-provisioning-data-online": "Online provisioning data:"
                 }
             },
             "support": "Toradex",
