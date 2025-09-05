@@ -12,7 +12,7 @@ ARG DEBUGGER_BASE_VERSION=4
 ##
 # Base container version
 ##
-ARG BASE_VERSION=4
+ARG BASE_VERSION=stable-rc
 
 ##
 # Directory of the application inside container
