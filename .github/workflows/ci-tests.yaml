@@ -67,13 +67,3 @@ jobs:
 
         run: |
           xonsh ./scripts/test-duplicates.xsh
-
-  build-application:
-    uses: ./assets/github/workflows/build-application.yaml@dev
-    with:
-      base_image: lbornia/torizon-dev-common:dev
-
-  build-torizoncore:
-    uses: ./tcb/.github/workflows/build-torizoncore.yaml@dev
-    with:
-      base_image: lbornia/torizon-dev-tcb:dev
