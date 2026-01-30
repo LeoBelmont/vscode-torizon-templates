@@ -17,14 +17,13 @@ env:
   PLATFORM_CREDENTIALS: ${{ secrets.PLATFORM_CREDENTIALS }}
 
   TORIZON_CI_SETTINGS_FILE: ${{ vars.TORIZON_CI_SETTINGS_FILE || '.vscode/settings.json' }}
-  BASE_IMAGE: ${{ inputs.base_image || 'torizonextras/torizon-dev:dev' }}
 
 jobs:
   build-deploy:
     runs-on: ubuntu-24.04
     name: Build & Deploy TorizonCore
     container:
-      image: ${{ env.BASE_IMAGE }}
+      image: ${{ vars.BASE_IMAGE || 'lbornia/torizon-dev-tcb:dev' }}
       options: --user root
     steps:
       - uses: actions/checkout@v4

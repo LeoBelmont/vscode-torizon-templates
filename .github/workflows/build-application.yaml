@@ -16,14 +16,13 @@ env:
   QT_LICENSE_LOGIN: ${{ secrets.QT_LICENSE_LOGIN }}
 
   TORIZON_CI_SETTINGS_FILE: ${{ vars.TORIZON_CI_SETTINGS_FILE || '.vscode/settings.json' }}
-  BASE_IMAGE: ${{ vars.BASE_IMAGE || 'lbornia/torizon-dev-common:dev' }}
 
 jobs:
   build-deploy:
     runs-on: ubuntu-24.04
     name: Build & Deploy
     container:
-      image: ${{ env.BASE_IMAGE }}
+      image: ${{ vars.BASE_IMAGE || 'lbornia/torizon-dev-tcb:dev' }}
       options: --user root
     steps:
       - uses: actions/checkout@v4
