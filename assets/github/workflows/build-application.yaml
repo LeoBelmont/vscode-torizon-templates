@@ -1,6 +1,13 @@
 name: Build & Deploy TorizonCore
 on:
-  - push
+  push:
+  workflow_call:
+    inputs:
+      base_image:
+        description: Base image to use for the build
+        required: false
+        type: string
+        default: torizonextras/torizon-dev:dev
 
 env:
   TASKS_DISABLE_INTERACTIVE_INPUT: "True"
@@ -16,13 +23,14 @@ env:
   QT_LICENSE_LOGIN: ${{ secrets.QT_LICENSE_LOGIN }}
 
   TORIZON_CI_SETTINGS_FILE: ${{ vars.TORIZON_CI_SETTINGS_FILE || '.vscode/settings.json' }}
+  BASE_IMAGE: ${{ inputs.base_image || 'torizonextras/torizon-dev:dev' }}
 
 jobs:
   build-deploy:
     runs-on: ubuntu-24.04
     name: Build & Deploy
     container:
-      image: torizonextras/torizon-dev:dev
+      image: ${{ env.BASE_IMAGE }}
       options: --user root
     steps:
       - uses: actions/checkout@v4

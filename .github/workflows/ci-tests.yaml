@@ -51,7 +51,7 @@ jobs:
 
         run: |
           xonsh ./scripts/validate-json.xsh
-  
+
   check-task-duplicates:
     runs-on: ubuntu-24.04
     container:
@@ -67,3 +67,13 @@ jobs:
 
         run: |
           xonsh ./scripts/test-duplicates.xsh
+
+  build-application:
+    uses: ./assets/github/workflows/build-application.yaml@dev
+    with:
+      base_image: lbornia/torizon-dev-common:dev
+
+  build-torizoncore:
+    uses: ./tcb/.github/workflows/build-torizoncore.yaml@dev
+    with:
+      base_image: lbornia/torizon-dev-tcb:dev
