@@ -15,5 +15,6 @@
     "tcb.version": "3.14.0",
     "torizon.gpuPrefixRC": true,
     "torizon.restartDocker": false,
-    "terminal.integrated.defaultProfile.linux": "bash"
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.env.linux": { "PATH": "${env:HOME}/.local/bin:${env:PATH}" }
 }
